@@ -1,0 +1,7 @@
+ bar {
+ 	position top
+ 	font pango:Inconsolata, FontAwesome 10
+    status_command ~/.config/bumblebee-status/bumblebee-status \
+        -m title spotify caffeine amixer memory cpu datetime hostname \
+        -p spotify.layout=spotify.song , memory.format={percent:05.02f}% \
+        -t dracula-powerline \
