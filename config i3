@@ -268,8 +268,8 @@ bar {
         position top
  	font pango:Inconsolata , icomoon , Material , FontAwesome4 9
     status_command ~/.config/bumblebee-status/bumblebee-status \
-        -m title memory cpu datetz timetz hostname \
-        -p memory.format={percent:05.02f}% ,  \
+        -m title spotify memory cpu datetz time hostname \
+        -p spotify.layout=spotify.song , time.format=%-H:%-M:%-S ,  memory.format={percent:05.02f}% ,  \
         -t gruvbox-powerline \
         
         colors {
@@ -283,8 +283,9 @@ bar {
 	
 	
 ###############################################################################
-# CUSTOM
+#CUSTOM
 ###############################################################################
+
 #MOUSE FOCUS	
 focus_follows_mouse no
 
@@ -293,7 +294,7 @@ focus_follows_mouse no
 #bindsym $shift+ctrl+alt+n exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 #COLORS
-set_from_resource $i3-wm.bar.background.color i3-wm.bar.background.color "#32302f"
+set_from_resource $i3-wm.bar.background.color i3-wm.bar.background.color "#363433"
 set_from_resource $i3-wm.bar.statusline.color i3-wm.bar.statusline.color "#93a1a1"
 set_from_resource $i3-wm.bar.separator.color i3-wm.bar.separator.color "#268bd2"
 
@@ -306,6 +307,7 @@ smart_borders on
 
 
 #Floating 
+for_window [class="flameshot"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="calculator"] floating enable
 for_window [class="jetbrains toolbox"] floating enable
@@ -320,8 +322,10 @@ for_window [class="Vivaldi"] move to workspace $ws6
 for_window [class="VirtualBox Manager"] move to workspace $ws8
 for_window [class="boxes"] move to workspace $ws8
 for_window [class="Steam"] move to workspace $ws9
-for_window [class="VeraCrypt"] move to workspace $ws7
+for_window [class="Veracrypt"] move to workspace $ws7
 
+#MUSIC
+exec_always --no-startup-id spotify
 
 #ROFI
 bindsym $mod+space exec rofi -show drun -show-icons 
@@ -332,6 +336,9 @@ bindsym $mod+shift+space exec rofi -show run -show-icons
 #PICOM
 exec_always --no-startup-id picom -b	
 exec_always --no-startup-id flameshot
+
+#VPN
+exec_always --no-startup-id piactl background enable && piactl connect
 
 ###LOCK AND SUSPEND
 bindsym $mod+shift+s exec betterlockscreen -s suspend
@@ -347,4 +354,3 @@ bindsym $mod+shift+n exec nautilus --new-window
 exec_always --no-startup-id nitrogen --restore &
 	
 #TASKMANAGER
-bindsym $mod+shift+x exec kitty @ launch --bpytop
