@@ -59,11 +59,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 bindsym XF86AudioPlay exec playerctl play-pause
-
 bindsym XF86AudioPause exec playerctl play-pause
-
 bindsym XF86AudioNext exec playerctl next
-
 bindsym XF86AudioPrev exec playerctl previous
 
 
@@ -314,7 +311,7 @@ bindsym $mod+r mode "resize"
 ###############################################################################
 # Workspace name
 ###############################################################################
-# Cheetsheet https://fontawesome.com/v4.7/cheatsheet/
+# ICON Cheatsheet https://fontawesome.com/v4.7/cheatsheet/
 
 
 set $ws1 1:
