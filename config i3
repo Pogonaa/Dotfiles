@@ -54,8 +54,8 @@ exec --no-startup-id nm-applet
 ###############################################################################
 
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +6% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -6% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -101,10 +101,10 @@ bindsym $mod+Shift+q kill
 # change focus
 ###############################################################################
 
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+ae focus right
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+h focus right
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -118,7 +118,7 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
-bindsym $mod+Shift+ae move right
+bindsym $mod+Shift+h move right
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -129,14 +129,16 @@ bindsym $mod+Shift+Right move right
 # split in horizontal orientation
 ###############################################################################
 
-bindsym $mod+h split h
+bindsym $mod+shift+g split h
 
 
 ###############################################################################
 # split in vertical orientation
 ###############################################################################
 
-bindsym $mod+v split v
+bindsym $mod+g split v
+
+
 ###############################################################################
 # enter fullscreen mode for the focused container
 ###############################################################################
@@ -148,7 +150,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 ###############################################################################
 
-#bindsym $mod+s layout stacking
+###bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -170,7 +172,7 @@ bindsym $mod+t focus mode_toggle
 # focus the parent container
 ###############################################################################
 
-bindsym $mod+a focus parent
+bindsym $mod+o focus parent
 
 ###############################################################################
 # focus the child container
@@ -183,7 +185,6 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 ###############################################################################
-
 
 set $ws1 "1"
 set $ws2 "2"
@@ -209,65 +210,64 @@ set $ws19 19
 # switch to workspace
 ###############################################################################
 
+bindsym $mod+z workspace number $ws1
+bindsym $mod+x workspace number $ws2
+bindsym $mod+c workspace number $ws3
+bindsym $mod+v workspace number $ws4
+bindsym $mod+b workspace number $ws5
+bindsym $mod+n workspace number $ws6
+bindsym $mod+m workspace number $ws7
+bindsym $mod+a workspace number $ws8
+bindsym $mod+s workspace number $ws9
 
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $sw9
-bindsym $mod+Ctrl+1 workspace number $ws11
-bindsym $mod+Ctrl+2 workspace number $ws12
-bindsym $mod+Ctrl+3 workspace number $sw13
-bindsym $mod+Ctrl+4 workspace number $ws14
-bindsym $mod+Ctrl+5 workspace number $ws15
-bindsym $mod+Ctrl+6 workspace number $ws16
-bindsym $mod+Ctrl+7 workspace number $ws17
-bindsym $mod+Ctrl+8 workspace number $ws18
-bindsym $mod+Ctrl+9 workspace number $ws19
+bindsym $mod+Ctrl+z workspace number $ws11
+bindsym $mod+Ctrl+x workspace number $ws12
+bindsym $mod+Ctrl+c workspace number $sw13
+bindsym $mod+Ctrl+v workspace number $ws14
+bindsym $mod+Ctrl+b workspace number $ws15
+bindsym $mod+Ctrl+n workspace number $ws16
+bindsym $mod+Ctrl+m workspace number $ws17
+bindsym $mod+Ctrl+a workspace number $ws18
+bindsym $mod+Ctrl+s workspace number $ws19
 
 
 ###############################################################################
 # move focused container to workspace
 ###############################################################################
 
-
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+Ctrl+1 move container to workspace number $ws11
-bindsym $mod+Shift+Ctrl+2 move container to workspace number $ws12
-bindsym $mod+Shift+Ctrl+3 move container to workspace number $ws13
-bindsym $mod+Shift+Ctrl+4 move container to workspace number $ws14
-bindsym $mod+Shift+Ctrl+5 move container to workspace number $ws15
-bindsym $mod+Shift+Ctrl+6 move container to workspace number $ws16
-bindsym $mod+Shift+Ctrl+7 move container to workspace number $ws17
-bindsym $mod+Shift+Ctrl+8 move container to workspace number $ws18
-bindsym $mod+Shift+Ctrl+9 move container to workspace number $ws19
-
-
+bindsym $mod+Shift+z move container to workspace number $ws1
+bindsym $mod+Shift+x move container to workspace number $ws2
+bindsym $mod+Shift+c move container to workspace number $ws3
+bindsym $mod+Shift+v move container to workspace number $ws4
+bindsym $mod+Shift+b move container to workspace number $ws5
+bindsym $mod+Shift+n move container to workspace number $ws6
+bindsym $mod+Shift+m move container to workspace number $ws7
+bindsym $mod+Shift+a move container to workspace number $ws8
+bindsym $mod+Shift+s move container to workspace number $ws9
+bindsym $mod+Shift+Ctrl+z move container to workspace number $ws11
+bindsym $mod+Shift+Ctrl+x move container to workspace number $ws12
+bindsym $mod+Shift+Ctrl+c move container to workspace number $ws13
+bindsym $mod+Shift+Ctrl+v move container to workspace number $ws14
+bindsym $mod+Shift+Ctrl+b move container to workspace number $ws15
+bindsym $mod+Shift+Ctrl+n move container to workspace number $ws16
+bindsym $mod+Shift+Ctrl+m move container to workspace number $ws17
+bindsym $mod+Shift+Ctrl+a move container to workspace number $ws18
+bindsym $mod+Shift+Ctrl+s move container to workspace number $ws19
 
 
 ###############################################################################
 # reload the configuration file
 ###############################################################################
 
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e reload
+
 
 ###############################################################################
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 ###############################################################################
 
 bindsym $mod+Shift+r restart
+
 
 ###############################################################################
 # exit i3 (logs you out of your X session)
@@ -318,7 +318,7 @@ set $ws1 1:
 set $ws2 2:
 set $ws3 3:
 set $ws4 4:
-set $ws5 5:
+set $ws5 5:
 set $ws6 6:
 set $ws7 7:
 set $ws8 8:
@@ -366,23 +366,45 @@ workspace "$ws19" output DP-1
 
 
 bar {
-        position top
- 	font pango:Inconsolata , icomoon , Material , FontAwesome4 9
-    status_command ~/.config/bumblebee-status/bumblebee-status \
-        -m title spotify memory cpu pacman datetz time hostname \
-        -p pacman.sum=true , spotify.layout=spotify.song , time.format=%-H:%-M:%-S ,  memory.format={percent:05.02f}% ,  \
-        -t gruvbox-powerline \
-        
-        colors {
-      background $i3-wm.bar.background.color
-      statusline $i3-wm.bar.statusline.color
-      separator  $i3-wm.bar.separator.color
-                      
-  }
- }
+position top
+font pango: awesomefont4 , Terminus 9
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    colors {
+        # bar background color
+        background $bg
+        # text color used for blocks that do not have a color specified.
+        statusline $lightgray
+        # workspaces section            
+        #                    border  backgr. text
+        focused_workspace    $blue1 $bb $blue
+        inactive_workspace   $darkgray $darkgray $blue1
+        active_workspace     $aa $bb $blue1
+        urgent_workspace     $red $red $blue
+    }
+}
+set $bb #554a44
+set $aa #827671
+set $bg #1D2021
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #F9F5D7
+set $blue1 #b5b29e
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #32302F
+set $lightgray #938F71
+set $lightgray1 #665c54
 	
-	
-	
+
+
+# class                 border|backgr|text|indicator|child_border
+client.focused          #1D2021 #1D2021 $blue $purple $darkgray
+client.focused_inactive #171717 #2d2e2e $blue $purple $darkgray
+client.unfocused        #171717 $darkgray $lightgray $purple $darkgray
+client.urgent           $red $red $white $red $red
+
 ###############################################################################
 #CUSTOM
 ###############################################################################
@@ -393,7 +415,7 @@ focus_follows_mouse no
 
 
 #COLORS
-set_from_resource $i3-wm.bar.background.color i3-wm.bar.background.color "#363433"
+set_from_resource $i3-wm.bar.background.color i3-wm.bar.background.color "#282828"
 set_from_resource $i3-wm.bar.statusline.color i3-wm.bar.statusline.color "#93a1a1"
 set_from_resource $i3-wm.bar.separator.color i3-wm.bar.separator.color "#268bd2"
 
@@ -402,11 +424,11 @@ set_from_resource $i3-wm.bar.separator.color i3-wm.bar.separator.color "#268bd2"
 #WINDOWS
 ###############################################################################
 
-
+default_border pixel 7
 new_window 1pixel
 #GAPS / BORDERS
-gaps outer -1
-gaps inner 12
+gaps outer 3
+gaps inner 8
 smart_gaps on
 smart_borders on
 
@@ -416,6 +438,7 @@ for_window [class="flameshot"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="calculator"] floating enable
 for_window [class="jetbrains toolbox"] floating enable
+#for_window [class="java-lang-Thread"] floating enable  ##MAPLE
 for_window [window_role="pop-up"] floating enable
 
 
@@ -433,7 +456,11 @@ for_window [class="Veracrypt"] move to workspace $ws7
 ###############################################################################
 #BINDINGS
 ###############################################################################
+# Make the currently focused window a scratchpad
+bindsym $mod+shift+BackSpace move scratchpad
 
+# Show the first scratchpad window
+bindsym $mod+BackSpace scratchpad show
 
 #VOLUME
 #bindsym $shift+ctrl+alt+m exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -447,21 +474,27 @@ bindsym $mod+shift+space exec rofi -show run -show-icons
 	
 
 ###LOCK AND SUSPEND
-bindsym $mod+shift+s exec betterlockscreen -s suspend
+bindsym $mod+Shift+d exec betterlockscreen -s suspend
 bindsym $mod+crtl+shift+p exec shutdown now 
 
 #FLAMESHOT
-bindsym $mod+s exec flameshot gui
+bindsym $mod+3 exec flameshot gui
 
 #FILEMANAGER
-bindsym $mod+shift+n exec nautilus --new-window
+bindsym $mod+1 exec thunar
 
 #TASKMANAGER
-bindsym $mod+shift+z exec kitty bpytop
+bindsym $mod+2 exec kitty bpytop
 
 #CLOUD
 bindsym $mod+shift+i exec /home/nini/Documents/Boxcryptor_Portable_Linux64_2.33.304/Boxcryptor_Portable.sh
 
+#MUSIC
+bindsym $mod+p  exec flatpak run com.spotify.Client
+
+#BROWSER
+bindsym $mod+Shift+Return exec firefox
+bindsym $mod+Ctrl+Return exec vivaldi-stable
 
 ##################################################################################################
 #STARTUP
@@ -472,7 +505,7 @@ bindsym $mod+shift+i exec /home/nini/Documents/Boxcryptor_Portable_Linux64_2.33.
 exec_always --no-startup-id picom -b	
 
 #SCREENSHOT TOOL
-exec_always --no-startup-id flameshot
+#exec_always --no-startup-id flameshot
 
 #WALLPAPER
 exec_always --no-startup-id nitrogen --restore &
@@ -483,5 +516,6 @@ exec_always --no-startup-id piactl background enable && piactl connect
 #SCREEN POSTION
 exec_always --no-startup-id xrandr --output DP-4 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-1  --mode 1920x1080 --rate 60 --pos 2560x180 --rotate normal
 
-#MUSIC
-exec_always --no-startup-id spotify
+
+exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
