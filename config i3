@@ -1,17 +1,17 @@
-#############################################################################
-#                                                                           #
-#           *****                                   ***                     #
-#      *        *                                  *   *    *               #
-#              *                                   *                        #
-#     **      *            ****    ****   * ***    *       **     *** *     #
-#      *     ***          *    *  *    *  **   *  ****      *    *   *      #
-#      *        *  *****  *       *    *  *    *   *        *    *   *      #
-#      *        *         *       *    *  *    *   *        *     ***       #
-#      *    *   *         *    *  *    *  *    *   *        *    *          #
-#    *****   ***           ****    ****   *    *   *      *****   ****      #
-#                                                                *    *     #
-#                                                                 ****      #
-#############################################################################
+##########################################################################
+#           *****                                   ***                  #
+#      *        *                                  *   *    *            #
+#              *                                   *                     #
+#     **      *            ****    ****   * ***    *       **     *** *  #
+#      *     ***          *    *  *    *  **   *  ****      *    *   *   #
+#      *        *  *****  *       *    *  *    *   *        *    *   *   #
+#      *        *         *       *    *  *    *   *        *     ***    #
+#      *    *   *         *    *  *    *  *    *   *        *    *       #
+#    *****   ***           ****    ****   *    *   *      *****   ****   #
+#                                                                *    *  #
+#                                                                 ****   #
+##########################################################################                                                                                              
+
 
 #WIKI https://i3wm.org/docs/userguide.html 
 
@@ -112,10 +112,10 @@ bindsym $mod+Right focus right
 # move focused window
 ###############################################################################
 
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+h move right
+#bindsym $mod+Shift+j move left
+#bindsym $mod+Shift+k move down
+#bindsym $mod+Shift+l move up
+#bindsym $mod+Shift+h move right
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -219,7 +219,7 @@ bindsym $mod+s workspace number $ws9
 
 bindsym $mod+Ctrl+z workspace number $ws11
 bindsym $mod+Ctrl+x workspace number $ws12
-bindsym $mod+Ctrl+c workspace number $sw13
+bindsym $mod+Ctrl+c workspace number $ws13
 bindsym $mod+Ctrl+v workspace number $ws14
 bindsym $mod+Ctrl+b workspace number $ws15
 bindsym $mod+Ctrl+n workspace number $ws16
@@ -336,37 +336,21 @@ set $ws19 19
 ###############################################################################
 
 
-workspace "$ws1" output DP-4
-workspace "$ws2" output DP-4
-workspace "$ws3" output DP-4
-workspace "$ws4" output DP-4
-workspace "$ws5" output DP-4
-workspace "$ws6" output DP-4
-workspace "$ws7" output DP-4
-workspace "$ws8" output DP-4
-workspace "$ws9" output DP-4
-workspace "$ws10" output DP-4
-workspace "$ws11" output DP-1
-workspace "$ws12" output DP-1
-workspace "$ws13" output DP-1
-workspace "$ws14" output DP-1
-workspace "$ws15" output DP-1
-workspace "$ws16" output DP-1
-workspace "$ws17" output DP-1
-workspace "$ws18" output DP-1
-workspace "$ws19" output DP-1
 
 
 ###############################################################################
 #BAR
 ###############################################################################
 
-
-bar {
-position top
-font pango: awesomefont4 , Terminus 9
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    colors {
+ bar {
+ 	position top
+ 	font pango:Inconsolata, FontAwesome 8
+	status_command ~/.config/bumblebee-status/bumblebee-status \
+        -m title spotify caffeine amixer battery memory cpu datetime hostname \
+        -p spotify.layout=spotify.song , memory.format={percent:05.02f}% \
+	-t gruvbox
+	
+colors {
         # bar background color
         background $bg
         # text color used for blocks that do not have a color specified.
@@ -394,8 +378,6 @@ set $darkgray #32302F
 set $lightgray #938F71
 set $lightgray1 #665c54
 	
-
-
 # class                 border|backgr|text|indicator|child_border
 client.focused          #1D2021 #1D2021 $blue $purple $darkgray
 client.focused_inactive #171717 #2d2e2e $blue $purple $darkgray
@@ -424,8 +406,8 @@ set_from_resource $i3-wm.bar.separator.color i3-wm.bar.separator.color "#268bd2"
 default_border pixel 7
 new_window 1pixel
 #GAPS / BORDERS
-gaps outer 3
-gaps inner 8
+gaps outer -3
+gaps inner 14
 smart_gaps on
 smart_borders on
 
@@ -478,7 +460,7 @@ bindsym $mod+crtl+shift+p exec shutdown now
 bindsym $mod+3 exec flameshot gui
 
 #FILEMANAGER
-bindsym $mod+1 exec thunar
+bindsym $mod+1 exec nemo
 
 #TASKMANAGER
 bindsym $mod+2 exec kitty bpytop
@@ -493,26 +475,34 @@ bindsym $mod+p  exec flatpak run com.spotify.Client
 bindsym $mod+Shift+Return exec firefox
 bindsym $mod+Ctrl+Return exec vivaldi-stable
 
+#KEYBOARD ENABLE/DISABLE 
+bindsym $mod+k exec xinput float 22
+bindsym $mod+shift+k exec xinput reattach 22 3
+
 ##################################################################################################
 #STARTUP
 ##################################################################################################
 
 
 #PICOM
-exec_always --no-startup-id picom -b	
+#exec_always --no-startup-id picom -b	
 
 #SCREENSHOT TOOL
 #exec_always --no-startup-id flameshot
 
 #WALLPAPER
-exec_always --no-startup-id nitrogen --restore &
+#exec_always --no-startup-id nitrogen --restore &
 
+#CLOUD
+exec_always --no-startup-id dropbox start
 #VPN
-exec_always --no-startup-id piactl background enable && piactl connect
+#exec_always --no-startup-id piactl background enable && piactl connect
 
 #SCREEN POSTION
-exec_always --no-startup-id xrandr --output DP-4 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-1  --mode 1920x1080 --rate 60 --pos 2560x180 --rotate normal
+#exec_always --no-startup-id xrandr --output DP-4 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-1  --mode 1920x1080 --rate 60 --pos 2560x180 --rotate normal
 
 
-exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+
 
